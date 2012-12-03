@@ -74,8 +74,10 @@ assert('Array#[]=', '15.2.12.5.5') do
     e3 = e1
   end
 
-  [1,2,3].[]=(1,4) == [1, 4, 3] and
-  [1,2,3].[]=(1,2,3) == [1, 3] and
+  [1,2,3].[]=(1,4) == 4 and
+  [1,2,3].[]=(1,2,3) == 3 and
+  (a = [1,2,3]; a.[]=(1,4); a == [1, 4, 3]) and
+  (a = [1,2,3]; a.[]=(1,2,3); a == [1, 3]) and
     e2.class == ArgumentError and
     e3.class == ArgumentError
 end
@@ -269,7 +271,7 @@ assert('Array#unshift', '15.2.12.5.30') do
   c = [2,3]
   d = c.unshift(0, 1)
 
-  a == [1,2,3] and b == [1,2,3] and c == [0,1,2,3] and d == [0,1,2,3] 
+  a == [1,2,3] and b == [1,2,3] and c == [0,1,2,3] and d == [0,1,2,3]
 end
 
 assert('Array#to_s', '15.2.12.5.31') do
